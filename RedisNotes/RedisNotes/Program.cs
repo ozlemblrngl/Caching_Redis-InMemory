@@ -23,5 +23,21 @@
         // bir de implementasyonu in memory'e göre daha uğraştırıcıdır. 
         // Ancak bunlar çok da büyük sorunlar değil keza veri tutarlılığı hızdan çok daha önemlidir.
 
+
+        // On-Demand ve Prepopulation
+
+        // Cachlenmek istenen veri çok sık güncellenmeyen bir veri olmalı ve çok sık erişilmek istenen bir veri olmalı. Bu iki özelliği bulunmalıdır.
+        // Peki biz bu veriyi ne zaman cacheleyeceğiz. Bu noktada On-demand ve prepopulation kavramları karşımıza çıkar.
+
+        // On-demand veriyi sadece talep olduğunda cachelememiz anlamına gelir.
+        // Yani bir request gelir ilgili veriyi veritabanından çekeriz. Bunu cacheleriz ve bu cachelenen veriyi ilgili requeste response döneriz.
+        // kısaca ilgili veriyi sadece talep anında cacheleriz talep edilmezse cachelemeyiz.
+
+        // Prepopulation ise uygulamahyı ayağa kaldırdığımızda daha talep gelmeden veritabanına gidip verileri çekip cachelemedir.
+        // daha sonra bir istek geldiğinde cacheden response olarak veriyi dönebiliriz.
+
+        // bu iki cacheleme zamanının birbirlerine üstünlüğü yoktur. Uygulama amacına göre herhangi birini kullanabiliriz.
+
+
     }
 }
