@@ -12,7 +12,13 @@ namespace InMemoryCache.Controllers
         }
         public IActionResult Index()
         {
+            _memoryCache.Set<string>("zaman", DateTime.Now.ToString());
+            return View();
+        }
 
+        public IActionResult Show()
+        {
+            ViewBag.time = _memoryCache.Get<string>("zaman");
             return View();
         }
     }
