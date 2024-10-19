@@ -15,5 +15,13 @@
 
         // InMemoryCache TryGetValue() --> herhangi bir değeri almak için kullanırız ve Remove() --> key i silmek için kullanırız.
         // GetOrCreate() ilgili keya sahip data varsa getirir yoksa oluşturur.
+
+        // AbsoluteExpiration ve SlidingExpiration
+        // AbsoluteExpiration cache in ömrü bu süre kadar olur örn 5 dk verdik 5 dk sonra biter.
+        // SlidingExpiration diyelim ki 5 dk verdik memoryde 5 dk kalır. 5 dk içinde bu dataya erişilmezse silinir ancak ulaşılırsa ömrü 5 dk daha uzer. kısaca verilen sürede kullanıldığı sürece kullanılır.
+        // AbsoluteExpiration kullanmak daha makuldür çünkü SlidingExpiration de sürekli yenilenebilme ihtimali var ve bu da verinin güncel olmaması gibi durumlara neden olabilir.
+        // ikisini bir arada kullanmak mümkündür. SlidingExpiration da AbsoluteExpiration belirlersek, ilgili dataya ne kadar ulaşılırsa ulaşılsın nihai ömrü absoluteExpirationdaki kadar olacaktır.
+
+
     }
 }
