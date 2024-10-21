@@ -23,5 +23,13 @@
         // ikisini bir arada kullanmak mümkündür. SlidingExpiration da AbsoluteExpiration belirlersek, ilgili dataya ne kadar ulaşılırsa ulaşılsın nihai ömrü absoluteExpirationdaki kadar olacaktır.
 
 
+        // Caching Priority
+        // memory doldu diyelim, bu durumda memoryden hangi key'in öncelikli olarak silineceğini belirlemektir. Bazı verilerin cache de kalması önemlidir ve bu nedenle memory dolduğunda cacheden öncelikli olmayanların silinmesi gerekir. 
+        // options.Priority = CacheItemPriority.Low, .Normal, .High, .NeverRemove  
+        // Hafıza dolduğunda ve yeni veri eklemek istediğimizde Low öncelikli silineceklerdir, Low yoksa öncelikli silinecek Normal'dır. Normal da kalmadıysa High silinecektir.
+        // Kısaca silinme önceliğine göre Low düşük seviyede öneme, normal Low'dan daha yüksek seviyede öneme, High Normal'dan yüksek seviyede öneme sahiptir. 
+        // NeverRemove ise asla silinmesini istemediğimiz datadır. Burada veri eklerken şöyle bir sıkıntı olabilir:
+        // memory doldu ve hepsi de neverremove dan oluşuyor o zaman program exception fırlatacaktır çünkü ne yeni veriyi alacak yeri vardır ne de silinebilecek verisi. 
+
     }
 }
