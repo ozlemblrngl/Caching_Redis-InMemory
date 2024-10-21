@@ -16,7 +16,9 @@ namespace InMemoryCache.Controllers
             // ömür vermek için kullandığımız sınıf
             MemoryCacheEntryOptions options = new MemoryCacheEntryOptions();
 
-            options.AbsoluteExpiration = DateTime.Now.AddSeconds(10); // 10 sn lik ömür vermiş olduk.
+           // options.AbsoluteExpiration = DateTime.Now.AddSeconds(10); // 10 sn lik ömür vermiş olduk.
+
+            options.SlidingExpiration = TimeSpan.FromSeconds(10); // 10 sn aralıklı ömür verdik eğer 10 sn içerisinde tetiklenirse ömrü 10 sn daha uzayacak her defasında. Tetiklenmezse ölecek.
             _memoryCache.Set<string>("zaman", DateTime.Now.ToString(), options);
 
 
@@ -26,9 +28,9 @@ namespace InMemoryCache.Controllers
 
         public IActionResult Show()
         {
-            _memoryCache.TryGetValue("zaman", out string timecache);
+            ViewBag.time= _memoryCache.Get<string>("zaman");
 
-            ViewBag.time = timecache;
+            
             return View();
         }
     }
