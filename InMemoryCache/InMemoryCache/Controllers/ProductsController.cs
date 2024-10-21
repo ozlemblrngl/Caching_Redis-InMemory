@@ -22,18 +22,31 @@ namespace InMemoryCache.Controllers
             options.SlidingExpiration = TimeSpan.FromSeconds(10); // 10 sn aralıklı ömür verdik eğer 10 sn içerisinde tetiklenirse ömrü 10 sn daha uzayacak her defasında. Tetiklenmezse ölecek.
 
             options.Priority = CacheItemPriority.High;
+            
+            options.RegisterPostEvictionCallback((key, value, reason, state) => {
+
+                 _memoryCache.Set("callback", $"{key}-->{value} => silinme sebebi: {reason}");
+
+            }); // calback metodu içinde bir delege çağırıyoruz. Burada ayrı bir fonksiyon yazmak yerine callback func ile parametrelerle burada çağırdık. 
+
+
             _memoryCache.Set<string>("zaman", DateTime.Now.ToString(), options);
 
-
+            
 
             return View();
         }
 
         public IActionResult Show()
         {
-            ViewBag.time= _memoryCache.Get<string>("zaman");
+            _memoryCache.TryGetValue("zaman", out string timeCache);
+            _memoryCache.TryGetValue("callback", out string callback);
 
-            
+            ViewBag.time = timeCache;
+            ViewBag.callback = callback;
+
+
+
             return View();
         }
     }
