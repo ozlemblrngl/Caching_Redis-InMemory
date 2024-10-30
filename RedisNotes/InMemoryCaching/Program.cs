@@ -43,5 +43,73 @@
         // ancak redis kısmında serilasyonu kendimiz yapacağız: ya binary'e ya da json serialize işlemini yapmamız gerekecek. 
 
 
+
+        //       @{
+        //            ViewData["Title"] = "Show";
+
+        //            Product product = ViewBag.product as Product;
+        //        }
+        //< h1 > @ViewBag.time </ h1 >
+        //< h1 > @ViewBag.callback </ h1 >
+        //< h3 > @product.Id => @product.Name => @product.Price </ h3 >
+
+        //Bu ifade C#'ta bir casting (dönüştürme) işlemidir ve as anahtar sözcüğü kullanılarak yapılmıştır.
+
+        //Anlamı: ViewBag.product nesnesini Product türüne dönüştürmeye çalışır. Eğer ViewBag.product, Product türünde değilse veya null ise, product değişkenine null atanır.Bu, klasik(Product)ViewBag.product şeklindeki casting işleminden farklıdır; çünkü as ile yapılan dönüşüm başarısız olduğunda hata atmaz, sadece null döner.
+
+        //Kullanım amacı:
+
+        //Güvenli Tür Dönüşümü: Eğer ViewBag.product gerçekten bir Product nesnesiyse, product değişkenine atanır.Değilse null atanır ve program InvalidCastException hatası atmaz.
+        //Null Kontrolü Kolaylığı: product değişkeninin null olup olmadığı kontrol edilerek, dönüşümün başarılı olup olmadığını anlamak kolaylaşır.
+
+
+        //        @{
+        //            ViewData["Title"] = "Show";
+
+        //            Product product = ViewBag.product is Product;
+        //        }
+        //< h1 > @ViewBag.time </ h1 >
+        //< h1 > @ViewBag.callback </ h1 >
+
+        //Bu kodda:
+
+        //        Product product = ViewBag.product is Product;
+        //        yanlış bir kullanımdır, çünkü is operatörü yalnızca bool bir değer döndürür ve bu değeri doğrudan bir Product türüne atamaya çalışmak hata yaratır.Bu kodda product değişkeni aslında bool bir değeri temsil eder, Product türünde bir nesne değildir.
+
+        //Doğru Kullanım Örneği
+        //Eğer ViewBag.product nesnesinin Product türünde olup olmadığını kontrol etmek istiyorsanız, aşağıdaki gibi bir if yapısı kullanılabilir:
+
+        //@{
+        //            ViewData["Title"] = "Show";
+
+        //            // product değişkenini tanımlamak için as kullanımıyla bir casting yapıyoruz
+        //            Product product = ViewBag.product as Product;
+
+        //            if (product != null)
+        //            {
+        //                // product geçerli bir Product türünde
+        //            }
+        //            else
+        //            {
+        //                // product, Product türünde değil veya null
+        //            }
+        //        }
+        //        Alternatif olarak, is ile kontrol yapıp aynı anda casting yapmanın modern bir yöntemi olarak pattern matching kullanabilirsiniz:
+
+        //@{
+        //            ViewData["Title"] = "Show";
+
+        //            if (ViewBag.product is Product product)
+        //            {
+        //                // Burada product artık bir Product türü olarak tanımlı
+        //            }
+        //            else
+        //            {
+        //                // product, Product türünde değil
+        //            }
+        //        }
+        // is Kullanımının Faydası
+        // is, bir nesnenin türünü kontrol etmek için kullanılırken, as yalnızca belirli bir türe dönüşüm sağlamak amacıyla kullanılır.Bu tür durumlarda is, özellikle geçerli tür olup olmadığını anlamak için idealdir.
+
     }
 }
