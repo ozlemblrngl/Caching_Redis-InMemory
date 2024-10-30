@@ -31,5 +31,17 @@
         // NeverRemove ise asla silinmesini istemediğimiz datadır. Burada veri eklerken şöyle bir sıkıntı olabilir:
         // memory doldu ve hepsi de neverremove dan oluşuyor o zaman program exception fırlatacaktır çünkü ne yeni veriyi alacak yeri vardır ne de silinebilecek verisi. 
 
+        // RegisterPostEvictionCallback() metodu:
+        // memory den bir data silindiği zaman hangi sebeple silindi bunu tespit edebiliyoruz.
+        // bu metot bir delegeye işaret eder bu delege de PostEvictDelegate 'tir içine girersek bu metodun silinen key'e ve değerine, silinme nedenine ve state'ne haiz olduğunu görürürz parametrelerinde.
+        // bkz: public delegate void PostEvictionDelegate(object key, object? value, EvictionReason reason, object? state);
+
+        // complex types caching 
+        // burada complex types tan kastımız classlar ve nesne örneklerimizin cachlenmesidir.
+        // inmemoryde set metodu içerisine obje aldığından dolayı içeirisinde her türlü types tutabiliyoruz. Bir pdf dosyası da, bir class nesne örneği vs. de tutabiliyoruz kısaca.
+        // serilasyon işlemini IMemoryCache halledecek. 
+        // ancak redis kısmında serilasyonu kendimiz yapacağız: ya binary'e ya da json serialize işlemini yapmamız gerekecek. 
+
+
     }
 }
