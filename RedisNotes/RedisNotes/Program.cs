@@ -39,5 +39,21 @@
         // bu iki cacheleme zamanının birbirlerine üstünlüğü yoktur. Uygulama amacına göre herhangi birini kullanabiliriz.
 
 
+        // REDİS 
+
+        // remote dictionary server->Redis
+
+        // verileri veritabanında tutan bir NoSql veritabanıdır. En büyük avantajlarından bir tanesi veri tiplerine sahip olmasıdır.
+        // Dataları dictionary şeklinde bir key value olarak tutmaz. Veri tipleri kullanır.Kullandığımız veri tiplerine karşılık burada da veri tiplerimiz bulunmaktadır.
+        // Biz oop deki senaryomuza uygun olarak redis tarafında bir veri tipi bulabilmekteyiz. Verileri memory'de tuttuğu için çok hızlı bir şekilde verileri okuyabilir ve yazabiliriz.
+        // Güçlü olduğu yönlerden birisi veri tutarlılığıdır. Diyelim ki on farklı instance var bunların hepsi ayağa kalktığında hepsi redis'ten beslendiği için veri tutarlı olacaktır. 
+
+        // Uygulaması InMemory'deki gibidir, cachelemek istediğimiz veriyi server'dan çekiyoruz ve cacheliyoruz. Daha sonraki isteklerde öncelikle veritabanından okumak yerine önbelleğe bakıyoruz
+        // varsa veri önbellekten okuyoruz ve client'lara bu veriyi dönüyoruz. 
+
+        // Distributed Cache'in şu avantajı da vardır; biz kullanıcılara ilişkin session bilgilerini de redis'te saklayabiliriz.
+        // InMemory kullandığımızda session tarafında veri tutarsızlığı yaşayabilirken, redis tarafında kullacıların oturum bilgilerini tutarken veri tutarsızlığından kurtulmuş oluruz. 
+
+
     }
 }
